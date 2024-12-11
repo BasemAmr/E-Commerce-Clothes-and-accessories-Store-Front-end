@@ -12,12 +12,12 @@ export interface Category {
 
 export interface Product {
     id: string;
-    category: Category;
+    categoryId: string;
     name: string;
     price: string;
     isFeatured: boolean;
-    size: Size[],
-    color: Color[],
+    sizes: Size[],
+    colors: Color[],
     images: Image[];
 }
 
