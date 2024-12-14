@@ -34,10 +34,16 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
     const colors = await getColors();
     const category = await getCategory(categoryId);
 
+    console.log('category', category);
+    console.log('products', products);
+    console.log('sizes', sizes);
+    console.log('colors', colors);
+    console.log('billboard', category.billboards);
+
     return (
         <div className="bg-white">
             <Container>
-                <Billboard data={category.billboard} />
+                <Billboard data={category.billboards} />
                 <div className="px-4 sm:px-6 lg:px-8 pb-24">
                     <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
                         <MobileFilters sizes={sizes} colors={colors} />

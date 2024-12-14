@@ -7,7 +7,7 @@ export interface Billboard {
 export interface Category {
     id: string;
     name: string;
-    billboard: Billboard;
+    billboards: Billboard;
 }
 
 export interface Product {
@@ -19,6 +19,7 @@ export interface Product {
     sizes: Size[],
     colors: Color[],
     images: Image[];
+    isArchived?: boolean;
 }
 
 export interface Size {
@@ -36,4 +37,9 @@ export interface Color {
 export interface Image {
     id: string;
     url: string;
+}
+
+export interface CartItem extends Product {
+    selectedSize?: Size;
+    selectedColor?: Color;
 }

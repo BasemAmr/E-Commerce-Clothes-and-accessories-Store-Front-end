@@ -2,10 +2,22 @@ import { cn } from "@/lib/utils";
 import { Product } from "@/types/types";
 import { Button } from "@/components/ui/button";
 import Currency from "@/components/ui/currency";
+import { useCart } from "@/hooks/use-cart";
 
 const Info = (
     {product, selectedSize, setSelectedSize, selectedColor, setSelectedColor} : { product: Product; selectedSize: string | null; setSelectedSize: (size: string) => void; selectedColor: string | null; setSelectedColor: (color: string) => void }
 ) => {
+
+    const { addItem } = useCart();
+
+    const handleAddToCart = () => {
+        addItem({
+            ...product,
+            selectedSize: product.sizes.find(s => s.id === selectedSize),
+            selectedColor: product.colors.find(c => c.id === selectedColor)
+        });
+    };
+
     return (
         <div className="space-y-4">
                     <h1 className="text-3xl font-bold">{product.name}</h1>
@@ -43,8 +55,14 @@ const Info = (
                             ))}
                         </div>
                     </div>
-                    <Button className="w-full mt-4" variant="default" size="lg">
-                        Add to Cart
+                    <Button 
+                        className="w-full mt-4" 
+                        variant="default" 
+                        size="lg"
+                        disabled={!selectedSize || !selectedColor}
+                        onClick={handleAddToCart}
+                    >
+                        {!selectedSize || !selectedColor ? 'Select options' : 'Add to Cart'}
                     </Button>
                 </div>
     );

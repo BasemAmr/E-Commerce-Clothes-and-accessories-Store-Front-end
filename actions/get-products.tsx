@@ -28,6 +28,9 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         if (query.sizeId) {
             return product.sizes.some((size) => size.id === query.sizeId);
         }
+        if (product.isArchived) {
+            return false;
+        }
         return product;
     }
     );

@@ -9,6 +9,7 @@ import Currency from '@/components/ui/currency';
 import { useRouter } from 'next/navigation';
 
 import { usePreviewModel } from '@/hooks/use-preview-model';
+import { useCart } from '@/hooks/use-cart';
 
 interface ProductCardProps {
     data: Product;
@@ -20,6 +21,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ data, category }) => {
     const [isLoading, setIsLoading] = useState(false);
      
     const { isOpen, setIsOpen, setData } = usePreviewModel();
+
+    const {addItem} = useCart();
+
 
     const handleClick = (
         datum: Product
@@ -34,6 +38,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ data, category }) => {
         setTimeout(() => {
             setIsLoading(false);
         }, 200);
+    };
+
+    const handleAddToCart = () => {
+        addItem({
+            ...data,
+            selectedSize: data.sizes[0], // Default to first size
+            selectedColor: data.colors[0] // Default to first color
+        });
     };
 
     return (
@@ -60,7 +72,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ data, category }) => {
                             className='p-2'
                         />
                         <IconButton
-                            onClick={() => {}}
+                            onClick={
+                                handleAddToCart
+                            }
                             icon={<ShoppingCart size={20} className="text-gray-600" />}
                             className='p-2 '
                         />

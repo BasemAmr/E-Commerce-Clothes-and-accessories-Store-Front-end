@@ -9,8 +9,7 @@ const Currency: React.FC<{ value: string }> = ({ value }) => {
 
     if (!isMounted) return null;
 
-    return <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value))}</span>;
+    return <span>{new Intl.NumberFormat('ar-EG', { style: 'currency', currency: 'EGP' }).format(Number(value))}</span>;
 };
-
 
 export default Currency;
