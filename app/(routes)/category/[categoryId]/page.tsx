@@ -21,8 +21,8 @@ interface CategoryPageProps {
 
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
 
-    const { categoryId } = await params;
-    const { colorId, sizeId } = await searchParams;
+    const { categoryId } = params;
+    const { colorId, sizeId } = searchParams;
 
     const products = await getProducts({ 
         categoryId: categoryId,

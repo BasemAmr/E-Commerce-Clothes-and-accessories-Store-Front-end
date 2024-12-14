@@ -13,7 +13,7 @@ interface PageParams {
 const page = async (
     { params } : PageParams
 ) => {
-    const { productId } = await params;
+    const { productId } = params;
     
     const product = await getProduct(productId);
     const suggestedProducts = await getProducts({ categoryId: product.categoryId });
