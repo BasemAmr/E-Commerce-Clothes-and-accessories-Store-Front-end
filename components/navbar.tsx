@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import Container from './ui/container';
@@ -36,7 +36,9 @@ const RenderNavbar = (
                     </Link>
 
                     <div className="hidden lg:block">
-                        <MainNav data={categories} />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <MainNav data={categories} />
+                        </Suspense>
                     </div>
 
                     <NavbarActions />
@@ -46,7 +48,9 @@ const RenderNavbar = (
                 {isMobileMenuOpen && (
                     <div className="lg:hidden absolute top-16 left-0 right-0 bg-white border-b shadow-lg">
                         <div className="py-2">
-                            <MainNav data={categories} mobile />
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <MainNav data={categories} mobile />
+                            </Suspense>
                         </div>
                     </div>
                 )}
