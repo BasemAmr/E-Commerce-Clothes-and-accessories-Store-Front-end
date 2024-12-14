@@ -10,19 +10,19 @@ import MobileFilters from "@/components/mobile-filters";
 import { FilteredCards } from "../components/filtered";
 
 interface CategoryPageProps {
-    params: {
+    params: Promise<{
         categoryId: string;
-    },
-    searchParams: {
+    }>,
+    searchParams: Promise<{
         colorId: string;
         sizeId: string;
-    }
+    }>
 }
 
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
 
-    const { categoryId } = params;
-    const { colorId, sizeId } = searchParams;
+    const { categoryId } = await params;
+    const { colorId, sizeId } = await searchParams;
 
     const products = await getProducts({ 
         categoryId: categoryId,

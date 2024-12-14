@@ -5,15 +5,15 @@ import ProductPage from './component/page-with-state';
 import getCategories from '@/actions/get-categories';
 
 interface PageParams {
-    params : {
+    params : Promise<{
         productId: string;
-    }
+    }>
 }
 
 const page = async (
     { params } : PageParams
 ) => {
-    const { productId } = params;
+    const { productId } = await params;
     
     const product = await getProduct(productId);
     const suggestedProducts = await getProducts({ categoryId: product.categoryId });
