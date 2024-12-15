@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 const NavbarActions = () => {
     const [isMounted, setIsMounted] = useState(false);
 
-
+// 
     const router = useRouter();
 
     const cart = useCart();
