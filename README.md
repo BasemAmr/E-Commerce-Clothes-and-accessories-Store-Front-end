@@ -15,7 +15,7 @@ A modern, full-stack e-commerce store built with Next.js 15, React, and Tailwind
 - **UI Components:** 
     - headlessui/react
 - **State Management:** Zustand
-- **Query Handling:** @tanstack/react-query
+- **Query Handling:** axios
 - **Payment Processing:** Paymob Integration
 - **Image Optimization:** Next.js Image Component
 
