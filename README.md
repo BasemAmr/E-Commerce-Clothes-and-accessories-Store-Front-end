@@ -30,7 +30,7 @@ A modern, full-stack e-commerce store built with Next.js 15, React, and Tailwind
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/BasemAmr/e-commerce-store
+git clone https://github.com/BasemAmr/E-Commerce-Clothes-and-accessories-Store-Front-end
 cd e-commerce-store
 ```
 
