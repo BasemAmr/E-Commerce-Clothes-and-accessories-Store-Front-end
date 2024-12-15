@@ -44,7 +44,6 @@ yarn install
 3. Create a `.env` file:
 ```env
 NEXT_PUBLIC_API_URL=
-NEXT_PUBLIC_PAYMOB_API_KEY=
 ```
 
 4. Run the development server:
