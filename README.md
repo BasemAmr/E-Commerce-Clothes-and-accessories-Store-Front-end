@@ -15,7 +15,7 @@ A modern, full-stack e-commerce store built with Next.js 15, React, and Tailwind
 - **UI Components:** 
     - headlessui/react
 - **State Management:** Zustand
-- **Query Handling:** @tanstack/react-query
+- **Query Handling:** axios
 - **Payment Processing:** Paymob Integration
 - **Image Optimization:** Next.js Image Component
 
@@ -30,7 +30,7 @@ A modern, full-stack e-commerce store built with Next.js 15, React, and Tailwind
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/BasemAmr/e-commerce-store
+git clone https://github.com/BasemAmr/E-Commerce-Clothes-and-accessories-Store-Front-end
 cd e-commerce-store
 ```
 
@@ -44,7 +44,6 @@ yarn install
 3. Create a `.env` file:
 ```env
 NEXT_PUBLIC_API_URL=
-NEXT_PUBLIC_PAYMOB_API_KEY=
 ```
 
 4. Run the development server:

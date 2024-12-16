@@ -10,6 +10,8 @@ interface PageParams {
     }>
 }
 
+export const dynamic = 'force-static';
+
 const page = async (
     { params } : PageParams
 ) => {

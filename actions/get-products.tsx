@@ -19,23 +19,28 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         }
     });
 
-    const res = await (await fetch(url)).json();
+    try {
+        const res = await fetch(url, { cache: 'force-cache', next: { revalidate: 3600 } });
+        const data = await res.json();
 
-    const filtered = res.filter((product: Product) => {
-        if (query.colorId) {
-            return product.colors.some((color) => color.id === query.colorId);
-        }
-        if (query.sizeId) {
-            return product.sizes.some((size) => size.id === query.sizeId);
-        }
-        if (product.isArchived) {
-            return false;
-        }
-        return product;
+        const filtered = data.filter((product: Product) => {
+            if (query.colorId) {
+                return product.colors.some((color) => color.id === query.colorId);
+            }
+            if (query.sizeId) {
+                return product.sizes.some((size) => size.id === query.sizeId);
+            }
+            if (product.isArchived) {
+                return false;
+            }
+            return product;
+        });
+
+        return filtered;
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        return [];
     }
-    );
-
-    return filtered;
-}
+};
 
 export default getProducts;
