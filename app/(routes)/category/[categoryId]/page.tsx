@@ -20,8 +20,6 @@ interface CategoryPageProps {
   }>;
 }
 
-export const dynamic = "force-static";
-
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   const { categoryId } = await params;
   const { colorId, sizeId } = await searchParams;
