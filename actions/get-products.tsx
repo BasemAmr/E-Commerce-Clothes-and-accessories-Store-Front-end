@@ -17,6 +17,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         query: {
             categoryId: query.categoryId,
             isFeatured: query.isFeatured,
+            
         },
     });
 
