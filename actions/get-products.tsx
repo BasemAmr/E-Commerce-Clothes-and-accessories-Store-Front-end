@@ -8,7 +8,7 @@ interface Query {
     colorId?: string;
     sizeId?: string;
     isFeatured?: boolean;
-}
+} 
 
 const getProducts = async (query: Query): Promise<Product[]> => {
     // Construct the query URL

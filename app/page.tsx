@@ -10,7 +10,13 @@ import getCategories from '@/actions/get-categories';
 const HomePage = async() => {
 
     const billboard = await getBillboard('94887497-7898-4af2-b27f-a355df358902');
-    const products = await getProducts({ isFeatured: true });
+    const products = await getProducts({ 
+        isFeatured: true,
+        categoryId: '',
+        colorId: '',
+        sizeId: ''  
+        
+     });
     const categories = await getCategories();
 
 

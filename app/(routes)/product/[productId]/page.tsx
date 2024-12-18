@@ -10,7 +10,6 @@ interface PageParams {
     }>
 }
 
-export const dynamic = 'force-static';
 
 const page = async (
     { params } : PageParams
@@ -18,7 +17,12 @@ const page = async (
     const { productId } = await params;
     
     const product = await getProduct(productId);
-    const suggestedProducts = await getProducts({ categoryId: product.categoryId });
+    const suggestedProducts = (await getProducts({ 
+        categoryId: product.categoryId,
+        isFeatured: false,
+        colorId: '',
+        sizeId: ''
+     })).filter(p => p.id !== product.id);
     const categories =  await getCategories();
 
     return (

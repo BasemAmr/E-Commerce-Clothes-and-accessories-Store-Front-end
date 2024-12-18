@@ -30,6 +30,7 @@ const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
     categoryId: categoryId,
     colorId: colorId,
     sizeId: sizeId,
+    isFeatured: false,
   });
 
   const sizes = await getSizes();
