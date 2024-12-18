@@ -11,32 +11,26 @@ interface Query {
 }
 
 const getProducts = async (query: Query): Promise<Product[]> => {
+    // Construct the query URL
     const url = qs.stringifyUrl({
         url: URL,
         query: {
             categoryId: query.categoryId,
-            isFeatured: query.isFeatured
-        }
+            colorId: query.colorId, // Include colorId in query
+            sizeId: query.sizeId,   // Include sizeId in query
+            isFeatured: query.isFeatured,
+            isArchived: false,      // Ensure archived products are excluded
+        },
     });
 
     try {
+        // Fetch from the server with caching
         const res = await fetch(url, { cache: 'force-cache', next: { revalidate: 3600 } });
+        if (!res.ok) throw new Error(`Failed to fetch products: ${res.statusText}`);
+
+        // Parse and return response
         const data = await res.json();
-
-        const filtered = data.filter((product: Product) => {
-            if (query.colorId) {
-                return product.colors.some((color) => color.id === query.colorId);
-            }
-            if (query.sizeId) {
-                return product.sizes.some((size) => size.id === query.sizeId);
-            }
-            if (product.isArchived) {
-                return false;
-            }
-            return product;
-        });
-
-        return filtered;
+        return data;
     } catch (error) {
         console.error('Error fetching products:', error);
         return [];
