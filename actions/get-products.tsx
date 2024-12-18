@@ -16,10 +16,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         url: URL,
         query: {
             categoryId: query.categoryId,
-            colorId: query.colorId, // Include colorId in query
-            sizeId: query.sizeId,   // Include sizeId in query
             isFeatured: query.isFeatured,
-            isArchived: false,      // Ensure archived products are excluded
         },
     });
 
@@ -27,10 +24,23 @@ const getProducts = async (query: Query): Promise<Product[]> => {
         // Fetch from the server with caching
         const res = await fetch(url, { cache: 'force-cache', next: { revalidate: 3600 } });
         if (!res.ok) throw new Error(`Failed to fetch products: ${res.statusText}`);
-
-        // Parse and return response
         const data = await res.json();
-        return data;
+       
+        const filtered = data.filter((product: Product) => {
+            if (query.colorId) {
+                return product.colors.some((color) => color.id === query.colorId);
+            }
+            if (query.sizeId) {
+                return product.sizes.some((size) => size.id === query.sizeId);
+            }
+            if (product.isArchived) {
+                return false;
+            }
+            return product;
+        });
+
+        return filtered;
+
     } catch (error) {
         console.error('Error fetching products:', error);
         return [];
@@ -38,3 +48,5 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 };
 
 export default getProducts;
+
+
