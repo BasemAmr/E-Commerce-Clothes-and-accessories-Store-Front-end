@@ -23,7 +23,7 @@ const getProducts = async (query: Query): Promise<Product[]> => {
 
     try {
         // Fetch from the server with caching
-        const res = await fetch(url, { cache: 'force-cache', next: { revalidate: 3600 } });
+        const res = await fetch(url, { cache: 'force-cache', next: { revalidate: 10 } });
         if (!res.ok) throw new Error(`Failed to fetch products: ${res.statusText}`);
         const data = await res.json();
        

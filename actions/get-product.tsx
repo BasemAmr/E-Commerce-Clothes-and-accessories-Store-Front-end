@@ -4,7 +4,7 @@ const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
 
 const getProduct = async (id: string): Promise<Product> => {
     try {
-        const res = await fetch(`${URL}/${id}`, { cache: 'force-cache', next: { revalidate: 3600 } });
+        const res = await fetch(`${URL}/${id}`, { cache: 'force-cache', next: { revalidate: 10 } });
         return res.json();
     } catch (error) {
         console.error(`Error fetching product ${id}:`, error);
