@@ -4,6 +4,9 @@ import getProducts from '@/actions/get-products';
 import ProductPage from './component/page-with-state';
 import getCategories from '@/actions/get-categories';
 
+// For Vercel deployments: render dynamically instead of trying to pre-render all products
+export const dynamic = 'force-dynamic';
+
 interface PageParams {
     params : Promise<{
         productId: string;

@@ -7,6 +7,9 @@ import getBillboard from '@/actions/get-billboards';
 import getProducts from '@/actions/get-products';
 import getCategories from '@/actions/get-categories';
 
+// For Vercel deployments: render dynamically instead of trying to pre-render with live API data
+export const dynamic = 'force-dynamic';
+
 const HomePage = async() => {
 
     const billboard = await getBillboard('94887497-7898-4af2-b27f-a355df358902');

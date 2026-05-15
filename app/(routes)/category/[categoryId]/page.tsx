@@ -10,6 +10,9 @@ import MobileFilters from "@/components/mobile-filters";
 import { FilteredCards } from "../components/filtered";
 import { Suspense } from "react";
 
+// For Vercel deployments: render dynamically instead of trying to pre-render all categories
+export const dynamic = 'force-dynamic';
+
 interface CategoryPageProps {
   params: Promise<{
     categoryId: string;

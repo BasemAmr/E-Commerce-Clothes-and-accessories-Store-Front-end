@@ -1,6 +1,9 @@
 import { Suspense } from 'react';
 import SuccessClient from './components/success-client';
 
+// For Vercel deployments: render dynamically instead of trying to pre-render
+export const dynamic = 'force-dynamic';
+
 export default async function SuccessPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">

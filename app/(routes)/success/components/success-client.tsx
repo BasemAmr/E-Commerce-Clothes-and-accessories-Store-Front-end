@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import { useCart } from '@/hooks/use-cart';
@@ -13,7 +13,7 @@ export default function SuccessClient() {
     const {removeAll} = useCart();
     const searchParams = useSearchParams();
 
-    const transactionObj = {
+    const transactionObj = useMemo(() => ({
         id: searchParams.get('id'),
         pending: searchParams.get('pending'),
         amount_cents: searchParams.get('amount_cents'),
@@ -49,7 +49,7 @@ export default function SuccessClient() {
         acq_response_code: searchParams.get('acq_response_code'),
         txn_response_code: searchParams.get('txn_response_code'),
         hmac: searchParams.get('hmac')
-      };
+    }), [searchParams]);
   
 
     useEffect(() => {
@@ -78,7 +78,7 @@ export default function SuccessClient() {
         };
 
         checkOrderStatus();
-    }, [router]);
+    }, [router, removeAll, transactionObj]);
 
     return (
         <AnimatePresence>

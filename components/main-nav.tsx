@@ -12,12 +12,34 @@ interface MainNavProps {
 
 const MainNav = ({ data, mobile }: MainNavProps) => {
     const pathname = usePathname();
+
+    const staticLinks = [
+        { href: '/landing', label: 'Landing' },
+        { href: '/search', label: 'Search' },
+    ];
     
     return (
         <nav className={cn(
             "flex",
             mobile ? "flex-col space-y-4 px-6" : "items-center space-x-4 lg:space-x-6 mx-6"
         )}>
+            {staticLinks.map((route) => (
+                <Link
+                    key={route.href}
+                    href={route.href}
+                    className={cn(
+                        "text-sm font-medium transition-colors hover:text-black relative group",
+                        pathname === route.href ? "text-black" : "text-gray-500",
+                        mobile && "py-2"
+                    )}
+                >
+                    {route.label}
+                    <span className={cn(
+                        "absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full",
+                        pathname === route.href && "w-full"
+                    )} />
+                </Link>
+            ))}
             {data.map((route) => (
                 <Link
                     key={route.id}
